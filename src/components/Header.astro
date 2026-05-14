@@ -4,70 +4,48 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const path = Astro.url.pathname.replace(base, "") || "/";
 const isActive = (p: string) => path === p || (p !== "/" && path.startsWith(p));
 const url = (p: string) => `${base}${p}`;
-
-const logoCls = transparent ? "text-cream" : "text-ink";
-const logoAccentCls = transparent ? "text-gold-light" : "text-gold-deep";
-const navCls = transparent ? "text-cream/90" : "text-ink/80";
-const navHoverCls = transparent ? "hover:text-gold-light" : "hover:text-sage-deep";
-const activeCls = transparent ? "text-gold-light font-semibold" : "text-sage-deep font-semibold";
-const ctaCls = transparent ? "bg-gold text-ink hover:bg-cream" : "bg-sage-deep text-cream hover:bg-ink";
-const burgerCls = transparent ? "text-cream" : "text-ink";
 ---
 
 <header
   class:list={[
     "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-    transparent ? "bg-gradient-to-b from-ink/55 via-ink/30 to-transparent" : "bg-cream-soft/95 backdrop-blur border-b border-line",
+    transparent ? "bg-transparent" : "bg-ink/95 backdrop-blur",
   ]}
   data-header
-  data-transparent={transparent ? "1" : "0"}
 >
   <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
-    <a href={url("/")} class={`font-display text-xl sm:text-2xl tracking-wide ${logoCls}`} data-logo>
-      Scott's <span class={`italic ${logoAccentCls}`} data-logo-accent>Provisions</span>
+    <a href={url("/")} class="text-cream font-display text-xl sm:text-2xl tracking-wide">
+      Scott's <span class="italic text-gold-light">Provisions</span>
     </a>
 
-    <nav class={`hidden lg:flex items-center gap-8 text-sm tracking-wider uppercase ${navCls}`} data-nav>
-      <a href={url("/about")} class:list={[`${navHoverCls} transition`, isActive("/about") && activeCls]}>About</a>
-      <a href={url("/services")} class:list={[`${navHoverCls} transition`, isActive("/services") && activeCls]}>Services</a>
-      <a href={url("/menus")} class:list={[`${navHoverCls} transition`, isActive("/menus") && activeCls]}>Menus</a>
-      <a href={url("/contact")} class:list={[`${navHoverCls} transition`, isActive("/contact") && activeCls]}>Contact</a>
+    <nav class="hidden lg:flex items-center gap-8 text-sm tracking-wider uppercase text-cream/90">
+      <a href={url("/about")} class:list={["hover:text-gold-light transition", isActive("/about") && "text-gold-light"]}>About</a>
+      <a href={url("/services")} class:list={["hover:text-gold-light transition", isActive("/services") && "text-gold-light"]}>Services</a>
+      <a href={url("/menus")} class:list={["hover:text-gold-light transition", isActive("/menus") && "text-gold-light"]}>Menus</a>
+      <a href={url("/contact")} class:list={["hover:text-gold-light transition", isActive("/contact") && "text-gold-light"]}>Contact</a>
     </nav>
 
     <a
       href={url("/contact")}
-      class:list={[`hidden lg:inline-block text-xs font-semibold uppercase tracking-widest px-5 py-2.5 transition`, ctaCls]}
-      data-cta
+      class="hidden lg:inline-block bg-gold text-ink text-xs font-semibold uppercase tracking-widest px-5 py-2.5 hover:bg-cream transition"
     >
       Get a Quote
     </a>
 
-    <button
-      data-mobile-toggle
-      class={`lg:hidden p-2 ${burgerCls}`}
-      aria-label="Open menu"
-    >
+    <button data-mobile-toggle class="lg:hidden text-cream p-2" aria-label="Open menu">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </div>
 
-  <div
-    data-mobile-menu
-    class="hidden lg:hidden bg-cream text-ink border-t border-line"
-  >
+  <div data-mobile-menu class="hidden lg:hidden bg-ink text-cream border-t border-cream/10">
     <nav class="flex flex-col px-5 py-6 gap-1 text-sm uppercase tracking-wider">
-      <a href={url("/about")} class="py-3 border-b border-line hover:text-sage-deep">About</a>
-      <a href={url("/services")} class="py-3 border-b border-line hover:text-sage-deep">Services</a>
-      <a href={url("/menus")} class="py-3 border-b border-line hover:text-sage-deep">Menus</a>
-      <a href={url("/contact")} class="py-3 hover:text-sage-deep">Contact</a>
-      <a
-        href={url("/contact")}
-        class="mt-4 bg-sage-deep text-cream text-center font-semibold py-3 hover:bg-ink transition"
-      >
-        Get a Quote
-      </a>
+      <a href={url("/about")} class="py-3 border-b border-cream/10 hover:text-gold-light">About</a>
+      <a href={url("/services")} class="py-3 border-b border-cream/10 hover:text-gold-light">Services</a>
+      <a href={url("/menus")} class="py-3 border-b border-cream/10 hover:text-gold-light">Menus</a>
+      <a href={url("/contact")} class="py-3 hover:text-gold-light">Contact</a>
+      <a href={url("/contact")} class="mt-4 bg-gold text-ink text-center font-semibold py-3 hover:bg-cream transition">Get a Quote</a>
     </nav>
   </div>
 </header>
@@ -78,40 +56,16 @@ const burgerCls = transparent ? "text-cream" : "text-ink";
   toggle?.addEventListener("click", () => menu?.classList.toggle("hidden"));
 
   const header = document.querySelector("[data-header]") as HTMLElement | null;
-  const startedTransparent = header?.getAttribute("data-transparent") === "1";
-
-  if (header && startedTransparent) {
-    const logo = header.querySelector("[data-logo]") as HTMLElement | null;
-    const logoAccent = header.querySelector("[data-logo-accent]") as HTMLElement | null;
-    const nav = header.querySelector("[data-nav]") as HTMLElement | null;
-    const cta = header.querySelector("[data-cta]") as HTMLElement | null;
-    const burger = header.querySelector("[data-mobile-toggle]") as HTMLElement | null;
-
-    const setScrolled = (scrolled: boolean) => {
-      if (scrolled) {
-        header.classList.remove("bg-gradient-to-b", "from-ink/55", "via-ink/30", "to-transparent");
-        header.classList.add("bg-cream-soft/95", "backdrop-blur", "border-b", "border-line");
+  if (header && header.classList.contains("bg-transparent")) {
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        header.classList.remove("bg-transparent");
+        header.classList.add("bg-ink/95", "backdrop-blur");
       } else {
-        header.classList.add("bg-gradient-to-b", "from-ink/55", "via-ink/30", "to-transparent");
-        header.classList.remove("bg-cream-soft/95", "backdrop-blur", "border-b", "border-line");
+        header.classList.add("bg-transparent");
+        header.classList.remove("bg-ink/95", "backdrop-blur");
       }
-      logo?.classList.toggle("text-cream", !scrolled);
-      logo?.classList.toggle("text-ink", scrolled);
-      logoAccent?.classList.toggle("text-gold-light", !scrolled);
-      logoAccent?.classList.toggle("text-gold-deep", scrolled);
-      nav?.classList.toggle("text-cream/90", !scrolled);
-      nav?.classList.toggle("text-ink/80", scrolled);
-      burger?.classList.toggle("text-cream", !scrolled);
-      burger?.classList.toggle("text-ink", scrolled);
-      cta?.classList.toggle("bg-gold", !scrolled);
-      cta?.classList.toggle("text-ink", !scrolled);
-      cta?.classList.toggle("hover:bg-cream", !scrolled);
-      cta?.classList.toggle("bg-sage-deep", scrolled);
-      cta?.classList.toggle("text-cream", scrolled);
-      cta?.classList.toggle("hover:bg-ink", scrolled);
     };
-
-    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 </script>
