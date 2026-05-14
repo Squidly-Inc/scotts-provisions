@@ -1,0 +1,169 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const url = (p: string) => `${base}${p}`;
+
+const heroImage = "https://static.wixstatic.com/media/56773e_e8eb6ec8755447599adca9d512c222c4~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_90/JK8A0325-1-6-scaled_edited.jpg";
+
+const services = [
+  {
+    title: "Boxed Meals",
+    body: "Individually packaged meals for meetings, trainings, and workplace dining.",
+    href: url("/services") + "#boxed",
+  },
+  {
+    title: "Drop-Off Catering",
+    body: "Delivered and professionally set up — easy service without on-site staffing.",
+    href: url("/services") + "#drop-off",
+  },
+  {
+    title: "Full-Service On-Site",
+    body: "Passed appetizers, plated meals, family style — staffed to fit the event.",
+    href: url("/services") + "#on-site",
+  },
+  {
+    title: "Full Bar Service",
+    body: "Licensed bar — non-alcoholic, beer & wine, or full bar packages.",
+    href: url("/services") + "#bar",
+  },
+];
+---
+
+<Layout
+  title="Scott's Provisions | Chef-Driven Catering for Every Occasion"
+  description="Customizable, chef-driven catering for corporate meetings, social gatherings, and special events in San Jose and the South Bay."
+  transparentHeader={true}
+>
+  <!-- HERO -->
+  <section class="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
+    <img
+      src={heroImage}
+      alt="Scott's Provisions catering"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-ink/55"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-5 sm:px-8">
+      <p class="fade-up text-gold uppercase tracking-[0.3em] text-xs sm:text-sm mb-4 sm:mb-6">
+        Scott's Provisions · San Jose
+      </p>
+      <h1 class="fade-up-delay-1 text-cream font-display text-[1.625rem] leading-[1.2] sm:text-5xl lg:text-6xl sm:leading-[1.1] max-w-3xl tracking-tight">
+        Chef-Driven Catering<br/>
+        <span class="italic text-gold">for Every Occasion.</span>
+      </h1>
+      <p class="fade-up-delay-2 text-cream/85 mt-5 sm:mt-6 max-w-xl text-sm sm:text-lg leading-relaxed px-2">
+        Fresh, thoughtfully prepared cuisine for corporate meetings,
+        social gatherings, and special events — delivered with consistency,
+        style, and ease.
+      </p>
+      <div class="fade-up-delay-2 mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+        <a
+          href={url("/services")}
+          class="bg-gold text-ink text-sm font-semibold uppercase tracking-widest px-8 py-4 hover:bg-cream transition text-center"
+        >
+          See Our Services
+        </a>
+        <a
+          href={url("/menus")}
+          class="border border-cream/40 text-cream text-sm font-semibold uppercase tracking-widest px-8 py-4 hover:border-gold hover:text-gold transition text-center"
+        >
+          View Menus
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="bg-cream-soft py-20 sm:py-28">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+      <p class="text-sage-deep uppercase tracking-[0.3em] text-xs mb-6">Built on Forty Years</p>
+      <h2 class="font-display text-3xl sm:text-5xl text-ink mb-8 leading-tight">
+        Built on the Scott's standard.<br/>
+        <span class="italic text-gold-deep">Made for the modern workplace.</span>
+      </h2>
+      <p class="text-ink/75 leading-relaxed text-lg max-w-2xl mx-auto">
+        Whether the setting is professional or social, our team delivers
+        consistent execution, thoughtful presentation, international cuisines,
+        and seamless service at every scale. Our team handles the food,
+        service, and logistics so your event runs smoothly.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="bg-paper py-20 sm:py-28 border-y border-line">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="text-center mb-14 sm:mb-20">
+        <p class="text-sage-deep uppercase tracking-[0.3em] text-xs mb-4">Services</p>
+        <h2 class="font-display text-3xl sm:text-5xl text-ink">What We Do</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {services.map((s, i) => (
+          <a href={s.href} class="group block bg-cream-soft p-8 hover:bg-sage-pale transition border-t-2 border-gold">
+            <p class="text-gold-deep uppercase tracking-widest text-xs mb-3">0{i + 1}</p>
+            <h3 class="font-display text-2xl text-ink mb-3">{s.title}</h3>
+            <p class="text-ink/70 leading-relaxed text-sm mb-5">{s.body}</p>
+            <span class="text-sage-deep text-xs uppercase tracking-widest font-semibold border-b border-sage-deep pb-1 group-hover:text-gold-deep group-hover:border-gold-deep">
+              Learn More →
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="bg-sage-deep py-20 sm:py-28 text-center text-cream">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <p class="text-gold uppercase tracking-[0.3em] text-xs mb-4">Why Scott's Provisions</p>
+      <h2 class="font-display text-3xl sm:text-5xl mb-10 leading-tight">
+        Consistent execution.<br/>
+        <span class="italic text-gold">At every scale.</span>
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-x-12 gap-y-6 text-left max-w-2xl mx-auto">
+        <div class="flex gap-3 items-start">
+          <span class="text-gold font-bold text-xl">·</span>
+          <p class="text-cream/85 leading-relaxed">Consistent execution at any scale</p>
+        </div>
+        <div class="flex gap-3 items-start">
+          <span class="text-gold font-bold text-xl">·</span>
+          <p class="text-cream/85 leading-relaxed">One team for food, drinks, service, and logistics</p>
+        </div>
+        <div class="flex gap-3 items-start">
+          <span class="text-gold font-bold text-xl">·</span>
+          <p class="text-cream/85 leading-relaxed">Licensed, insured, and fully permitted</p>
+        </div>
+        <div class="flex gap-3 items-start">
+          <span class="text-gold font-bold text-xl">·</span>
+          <p class="text-cream/85 leading-relaxed">Dietary-flexible: vegan, gluten-free, allergen-conscious</p>
+        </div>
+      </div>
+      <a
+        href={url("/about")}
+        class="inline-block mt-12 border border-gold text-gold text-xs font-semibold uppercase tracking-widest px-8 py-3 hover:bg-gold hover:text-ink transition"
+      >
+        About Scott's Provisions →
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-cream-soft py-20 sm:py-28 text-center">
+    <div class="max-w-2xl mx-auto px-5 sm:px-8">
+      <p class="text-sage-deep uppercase tracking-[0.3em] text-xs mb-4">Get Started</p>
+      <h2 class="font-display text-3xl sm:text-5xl text-ink mb-6 leading-tight">
+        Let's plan your event.
+      </h2>
+      <p class="text-ink/70 leading-relaxed mb-10">
+        Tell us about your event. We'll respond within one business day
+        with availability, pricing, and menu options.
+      </p>
+      <a
+        href={url("/contact")}
+        class="inline-block bg-sage-deep text-cream text-sm font-semibold uppercase tracking-widest px-10 py-4 hover:bg-ink transition"
+      >
+        Request a Quote
+      </a>
+    </div>
+  </section>
+</Layout>

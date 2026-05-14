@@ -1,0 +1,130 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact | Scott's Provisions">
+  <section class="bg-ink pt-32 pb-12 sm:pb-16">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center">
+      <p class="text-gold uppercase tracking-[0.3em] text-xs mb-4">Contact</p>
+      <h1 class="font-display text-4xl sm:text-6xl text-cream mb-5 leading-tight">
+        Let's plan your event.
+      </h1>
+      <p class="text-cream/75 max-w-2xl mx-auto leading-relaxed">
+        Create an unforgettable experience at the venue of your choice — or one
+        of ours. Scott's Provisions offers full-service catering with exceptional
+        food, professional service, and complete bar programs for events of every size.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-soft py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16">
+      <!-- Form -->
+      <form class="bg-paper p-8 sm:p-10 border-t-4 border-gold space-y-5">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink mb-6">Tell us about your event.</h2>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="name" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Name</label>
+            <input type="text" id="name" required class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition" />
+          </div>
+          <div>
+            <label for="company" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Company (optional)</label>
+            <input type="text" id="company" class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="email" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Email</label>
+            <input type="email" id="email" required class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition" />
+          </div>
+          <div>
+            <label for="phone" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Phone</label>
+            <input type="tel" id="phone" class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="event-type" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Service Needed</label>
+            <select id="event-type" class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition">
+              <option>Boxed Meals</option>
+              <option>Drop-Off Catering</option>
+              <option>Full-Service Catering</option>
+              <option>Bar Service Only</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div>
+            <label for="guests" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Approx. Guests</label>
+            <input type="number" id="guests" min="1" class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition" />
+          </div>
+        </div>
+
+        <div>
+          <label for="date" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Event Date</label>
+          <input type="date" id="date" class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition" />
+        </div>
+
+        <div>
+          <label for="details" class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2 block">Tell us more</label>
+          <textarea id="details" rows="5" class="w-full border border-line bg-cream-soft px-4 py-3 text-ink focus:outline-none focus:border-sage-deep transition" placeholder="Venue, dietary needs, vibe — anything that helps us plan."></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-sage-deep text-cream text-sm font-semibold uppercase tracking-widest py-4 hover:bg-ink transition"
+        >
+          Send Inquiry →
+        </button>
+        <p class="text-ink/50 text-xs text-center">We respond within one business day.</p>
+      </form>
+
+      <!-- Direct contact info -->
+      <div class="space-y-10">
+        <div>
+          <h2 class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-3">Reach Us Directly</h2>
+          <div class="space-y-4">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-ink/50 mb-1">Phone</p>
+              <a href="tel:+16502836307" class="font-display text-2xl text-ink hover:text-gold-deep transition">(650) 283-6307</a>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-widest text-ink/50 mb-1">Email</p>
+              <a href="mailto:info@scottsprovisions.com" class="text-ink hover:text-gold-deep transition">info@scottsprovisions.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-3">Visit Us</h2>
+          <p class="font-display text-lg text-ink leading-snug">
+            88 S. 4th Street, 7th Floor<br/>
+            The Rotary Summit Center<br/>
+            San Jose, CA 95112
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-3">Lead Times</h2>
+          <ul class="text-ink/80 leading-relaxed space-y-2">
+            <li>· Boxed meals & drop-off: <strong class="text-ink">48 hours</strong></li>
+            <li>· Full-service events: <strong class="text-ink">2 weeks</strong> recommended</li>
+            <li>· Large galas: <strong class="text-ink">4–6 weeks</strong> recommended</li>
+          </ul>
+        </div>
+
+        <div class="aspect-[5/4] bg-ink/10 shadow-xl">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.123!2d-121.8889!3d37.3349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fcca5b3d4e4d5%3A0x0!2zODggUyBGb3VydGggU3QsIFNhbiBKb3NlLCBDQSA5NTExMg!5e0!3m2!1sen!2sus!4v1700000000000"
+            class="w-full h-full"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Scott's Provisions Map"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

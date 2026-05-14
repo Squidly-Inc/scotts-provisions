@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  /* Scott's Provisions — light theme, sage + gold accent */
+  --color-ink: #1f2422;
+  --color-ink-soft: #3a4540;
+  --color-cream: #faf6ec;
+  --color-cream-soft: #fdfaf2;
+  --color-paper: #ffffff;
+  --color-sand: #ece4cf;
+  --color-sage: #6b8068;
+  --color-sage-deep: #4a5b48;
+  --color-sage-pale: #d4ddd0;
+  --color-gold: #b89668;
+  --color-gold-deep: #946f3a;
+  --color-line: #e2dccc;
+
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", "Helvetica Neue", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-cream-soft);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.font-display { font-family: var(--font-display); }
+
+@keyframes fadeUp {
+  from { opacity: 0.3; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s ease-out both; }
+.fade-up-delay-1 { animation: fadeUp 0.5s ease-out 0.1s both; }
+.fade-up-delay-2 { animation: fadeUp 0.5s ease-out 0.2s both; }

@@ -1,0 +1,85 @@
+---
+const { transparent = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const path = Astro.url.pathname.replace(base, "") || "/";
+const isActive = (p: string) => path === p || (p !== "/" && path.startsWith(p));
+const url = (p: string) => `${base}${p}`;
+---
+
+<header
+  class:list={[
+    "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+    transparent ? "bg-transparent" : "bg-cream-soft/95 backdrop-blur border-b border-line",
+  ]}
+  data-header
+>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+    <a href={url("/")} class="font-display text-xl sm:text-2xl tracking-wide text-ink">
+      Scott's <span class="italic text-gold-deep">Provisions</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 text-sm tracking-wider uppercase text-ink/80">
+      <a href={url("/about")} class:list={["hover:text-sage-deep transition", isActive("/about") && "text-sage-deep font-semibold"]}>About</a>
+      <a href={url("/services")} class:list={["hover:text-sage-deep transition", isActive("/services") && "text-sage-deep font-semibold"]}>Services</a>
+      <a href={url("/menus")} class:list={["hover:text-sage-deep transition", isActive("/menus") && "text-sage-deep font-semibold"]}>Menus</a>
+      <a href={url("/contact")} class:list={["hover:text-sage-deep transition", isActive("/contact") && "text-sage-deep font-semibold"]}>Contact</a>
+    </nav>
+
+    <a
+      href={url("/contact")}
+      class="hidden lg:inline-block bg-sage-deep text-cream text-xs font-semibold uppercase tracking-widest px-5 py-2.5 hover:bg-ink transition"
+    >
+      Get a Quote
+    </a>
+
+    <button
+      data-mobile-toggle
+      class="lg:hidden text-ink p-2"
+      aria-label="Open menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    data-mobile-menu
+    class="hidden lg:hidden bg-cream text-ink border-t border-line"
+  >
+    <nav class="flex flex-col px-5 py-6 gap-1 text-sm uppercase tracking-wider">
+      <a href={url("/about")} class="py-3 border-b border-line hover:text-sage-deep">About</a>
+      <a href={url("/services")} class="py-3 border-b border-line hover:text-sage-deep">Services</a>
+      <a href={url("/menus")} class="py-3 border-b border-line hover:text-sage-deep">Menus</a>
+      <a href={url("/contact")} class="py-3 hover:text-sage-deep">Contact</a>
+      <a
+        href={url("/contact")}
+        class="mt-4 bg-sage-deep text-cream text-center font-semibold py-3 hover:bg-ink transition"
+      >
+        Get a Quote
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector("[data-mobile-toggle]");
+  const menu = document.querySelector("[data-mobile-menu]");
+  toggle?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+
+  const header = document.querySelector("[data-header]") as HTMLElement | null;
+  if (header && header.classList.contains("bg-transparent")) {
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        header.classList.remove("bg-transparent");
+        header.classList.add("bg-cream-soft/95", "backdrop-blur", "border-b", "border-line");
+      } else {
+        header.classList.add("bg-transparent");
+        header.classList.remove("bg-cream-soft/95", "backdrop-blur", "border-b", "border-line");
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+</script>

@@ -1,0 +1,128 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const url = (p: string) => `${base}${p}`;
+
+const tabs = [
+  { id: "boxed", label: "Boxed Meals" },
+  { id: "appetizers", label: "Appetizers" },
+  { id: "breakfast", label: "Breakfast" },
+  { id: "brunch", label: "Brunch" },
+  { id: "lunch", label: "Lunch" },
+];
+
+const boxed = [
+  { name: "Citrus-Herb Chicken Box", desc: "Roasted chicken, quinoa pilaf, seasonal vegetables, dinner roll", price: "22" },
+  { name: "Mediterranean Salmon Box", desc: "Lemon-dill salmon, couscous, roasted asparagus, tzatziki", price: "26" },
+  { name: "Vegetarian Power Box", desc: "Quinoa-stuffed peppers, hummus, pita, cucumber salad", price: "20" },
+  { name: "Steak & Mushroom Box", desc: "Sliced flank steak, roasted potatoes, mushroom medley, chimichurri", price: "28" },
+  { name: "Italian Pasta Box", desc: "Penne pomodoro, Caesar side, garlic bread, biscotti", price: "21" },
+];
+
+const appetizers = [
+  { name: "Bruschetta Trio", desc: "Tomato basil, mushroom, white bean — serves 12-15", price: "85" },
+  { name: "Charcuterie Board", desc: "Cured meats, cheeses, accompaniments — serves 15-20", price: "165" },
+  { name: "Crab Cakes (24 ct)", desc: "Mini crab cakes with remoulade", price: "120" },
+  { name: "Vegetable Crudité", desc: "Seasonal vegetables, herb dip — serves 20", price: "65" },
+  { name: "Shrimp Cocktail Platter", desc: "48 jumbo shrimp, classic cocktail sauce", price: "145" },
+];
+
+const breakfast = [
+  { name: "Continental Breakfast", desc: "Pastries, fresh fruit, yogurt, juice & coffee — per person", price: "16" },
+  { name: "Hot Breakfast Buffet", desc: "Scrambled eggs, breakfast meats, potatoes, pastries — per person", price: "24" },
+  { name: "Breakfast Burrito Bar", desc: "Build-your-own with all the fixings — per person", price: "19" },
+  { name: "Avocado Toast Station", desc: "Sourdough, smashed avocado, toppings, eggs to order — per person", price: "22" },
+];
+
+const brunch = [
+  { name: "Brunch Buffet", desc: "Eggs Benedict, French toast, breakfast meats, salads, pastries — per person", price: "38" },
+  { name: "Bloody Mary Bar", desc: "Premium mix, full garnish station — per person", price: "14" },
+  { name: "Mimosa Station", desc: "Sparkling wine, juices, fresh fruit — per person", price: "12" },
+  { name: "Smoked Salmon Bagel Bar", desc: "Bagels, cream cheese, capers, onions — per person", price: "26" },
+];
+
+const lunch = [
+  { name: "Sandwich & Salad Buffet", desc: "Assorted sandwiches, two salads, chips, cookies — per person", price: "22" },
+  { name: "Build-Your-Own Salad Bar", desc: "Greens, proteins, toppings, three dressings — per person", price: "20" },
+  { name: "Hot Lunch Buffet", desc: "Choice of two entrées, two sides, salad, dessert — per person", price: "32" },
+  { name: "Taco Bar", desc: "Three protein options, all the fixings, rice & beans — per person", price: "26" },
+  { name: "Pasta Bar", desc: "Two pasta options, two sauces, salad, garlic bread — per person", price: "24" },
+];
+
+const all = { boxed, appetizers, breakfast, brunch, lunch };
+const titles: Record<string, string> = {
+  boxed: "Boxed Meals",
+  appetizers: "Catering — Appetizers",
+  breakfast: "Catering — Breakfast",
+  brunch: "Catering — Brunch",
+  lunch: "Catering — Lunch",
+};
+---
+
+<Layout title="Menus | Scott's Provisions">
+  <section class="bg-ink pt-32 pb-12 sm:pb-16">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center">
+      <p class="text-gold uppercase tracking-[0.3em] text-xs mb-4">Menus</p>
+      <h1 class="font-display text-4xl sm:text-6xl text-cream mb-5 leading-tight">
+        Built for your event.
+      </h1>
+      <p class="text-cream/75 max-w-2xl mx-auto leading-relaxed">
+        Menus listed below cover <strong class="text-cream">boxed meals and drop-off catering</strong>.
+        For full-service on-site catering, menus are fully customizable.
+        Don't see what you need? <a href={url("/contact")} class="text-gold underline hover:text-cream">Reach out.</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-ink-soft sticky top-[68px] z-40 border-t border-cream/10">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 overflow-x-auto">
+      <div class="flex gap-1 py-2">
+        {tabs.map((t) => (
+          <a href={`#${t.id}`} class="text-cream/70 hover:text-gold text-xs sm:text-sm uppercase tracking-widest font-semibold px-4 sm:px-6 py-3 whitespace-nowrap transition">
+            {t.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream-soft py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 space-y-16 sm:space-y-20">
+      {tabs.map((t) => (
+        <div id={t.id}>
+          <h2 class="font-display text-2xl sm:text-4xl text-ink mb-8 sm:mb-10 pb-3 border-b border-gold/40">
+            {titles[t.id]}
+          </h2>
+          <ul class="space-y-6">
+            {all[t.id as keyof typeof all].map((item) => (
+              <li class="flex justify-between items-start gap-4 sm:gap-6">
+                <div class="flex-1">
+                  <p class="text-ink font-medium text-base sm:text-lg mb-1">{item.name}</p>
+                  <p class="text-ink/60 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+                <span class="text-ink/70 text-base sm:text-lg tabular-nums font-display whitespace-nowrap">${item.price}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="bg-sage-deep -mx-5 sm:mx-0 px-6 sm:px-12 py-12 sm:py-14 text-cream text-center">
+        <p class="text-gold uppercase tracking-[0.3em] text-xs mb-3">Custom Menus</p>
+        <h2 class="font-display text-2xl sm:text-3xl mb-4">Need something else?</h2>
+        <p class="text-cream/85 leading-relaxed mb-6 max-w-xl mx-auto">
+          For full-service catering, menus are built around your event.
+          Mexican, sushi, Asian, BBQ, American, Indian — international cuisines available.
+        </p>
+        <a href={url("/contact")} class="inline-block bg-gold text-ink text-xs font-semibold uppercase tracking-widest px-7 py-3 hover:bg-cream transition">
+          Request a Custom Quote
+        </a>
+      </div>
+
+      <p class="text-center text-ink/50 text-sm italic pt-4">
+        Sample pricing — all menus customizable. Pricing excludes applicable sales tax, a 20% service charge (not a gratuity), and delivery fees.
+      </p>
+    </div>
+  </section>
+</Layout>

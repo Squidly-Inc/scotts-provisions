@@ -1,0 +1,162 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const url = (p: string) => `${base}${p}`;
+
+const services = [
+  {
+    id: "boxed",
+    title: "Boxed Meals",
+    tagline: "For meetings, trainings, and recurring workplace dining.",
+    body: "Individually packaged meals designed for meetings, trainings, and recurring workplace dining. From small team meetings to large institutional programs, every order is prepared with care and executed with disciplined logistics. Dietary-friendly options available.",
+    details: [
+      ["Menu", "Pre-set options or reach out for custom"],
+      ["Ordering", "Toast or via contact page"],
+      ["Delivery", "Within 15 miles for a fee, or pick up"],
+      ["Minimum", "$500 or 10 meals"],
+      ["Notice", "48 hours"],
+      ["Availability", "Mon–Fri (or reach out for weekend)"],
+    ],
+    ctaLinks: [
+      { label: "View Menu", href: url("/menus") + "#boxed" },
+      { label: "Order Form", href: "https://www.toasttab.com/" },
+    ],
+  },
+  {
+    id: "drop-off",
+    title: "Drop-Off Catering",
+    tagline: "Easy service without on-site staffing.",
+    body: "A streamlined catering solution for meetings, team lunches, and workplace events — designed for easy service without on-site staffing. Meals are delivered and professionally set up, allowing your guests to focus on the food, not the logistics.",
+    details: [
+      ["Menu", "Pre-set options or reach out for custom"],
+      ["Ordering", "Toast or via contact page"],
+      ["Delivery", "Within 15 miles for a fee, or pick up"],
+      ["Minimum", "$1,000"],
+      ["Notice", "48 hours"],
+      ["Availability", "Mon–Fri (or reach out for weekend)"],
+    ],
+    ctaLinks: [
+      { label: "View Menu", href: url("/menus") + "#drop-off" },
+      { label: "Order Form", href: "https://www.toasttab.com/" },
+    ],
+  },
+  {
+    id: "on-site",
+    title: "Full-Service On-Site Catering",
+    tagline: "Passed appetizers, plated meals, family style — staffed.",
+    body: "Scott's Provisions is here to help with the full execution of your event. Our staff handles passed appetizers, plated meals, family style — and everything in between.",
+    details: [
+      ["Menu", "Fully custom"],
+      ["Availability", "Any day of the week"],
+      ["Notes", "Events subject to applicable sales tax, a 20% service charge (not a gratuity), and credit card processing fees."],
+    ],
+    ctaLinks: [
+      { label: "Get Started", href: url("/contact") },
+    ],
+  },
+  {
+    id: "bar",
+    title: "Full-Service On-Site Bar",
+    tagline: "Add-on or stand-alone — fully licensed.",
+    body: "Scott's Provisions offers fully licensed bar services as an add-on to on-site catering or as a stand-alone service. Explore our non-alcoholic, beer & wine, and full bar packages.",
+    details: [
+      ["Packages", "Non-alcoholic, beer & wine, or full bar"],
+      ["Staffing", "Professional bartenders included"],
+      ["Notes", "Licensed and insured"],
+    ],
+    ctaLinks: [
+      { label: "Get Started", href: url("/contact") },
+    ],
+  },
+];
+---
+
+<Layout title="Services | Scott's Provisions">
+  <section class="bg-ink pt-32 pb-12 sm:pb-16">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center">
+      <p class="text-gold uppercase tracking-[0.3em] text-xs mb-4">Services</p>
+      <h1 class="font-display text-4xl sm:text-6xl text-cream mb-5 leading-tight">
+        Food, drinks, and<br/>unforgettable experiences.
+      </h1>
+      <p class="text-cream/75 max-w-xl mx-auto leading-relaxed">
+        Four ways to bring Scott's to your next event.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-ink-soft sticky top-[68px] z-40 border-t border-cream/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 overflow-x-auto">
+      <div class="flex gap-1 py-2">
+        {services.map((s) => (
+          <a href={`#${s.id}`} class="text-cream/70 hover:text-gold text-xs uppercase tracking-widest font-semibold px-4 py-3 whitespace-nowrap transition">
+            {s.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream-soft py-16 sm:py-24">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 space-y-20 sm:space-y-28">
+      {services.map((s, i) => (
+        <article id={s.id} class="grid lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-4">
+            <p class="text-gold-deep uppercase tracking-[0.3em] text-xs mb-3">0{i + 1}</p>
+            <h2 class="font-display text-3xl sm:text-4xl text-ink mb-3 leading-tight">{s.title}</h2>
+            <p class="text-sage-deep italic text-base">{s.tagline}</p>
+          </div>
+
+          <div class="lg:col-span-8 space-y-8">
+            <p class="text-ink/80 leading-relaxed text-lg">{s.body}</p>
+
+            <dl class="grid sm:grid-cols-2 gap-x-8 gap-y-4 bg-paper p-6 border border-line">
+              {s.details.map(([k, v]) => (
+                <div>
+                  <dt class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-1">{k}</dt>
+                  <dd class="text-ink/85 text-sm leading-relaxed">{v}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div class="flex flex-wrap gap-3">
+              {s.ctaLinks.map((l) => (
+                <a href={l.href} class="bg-sage-deep text-cream text-xs font-semibold uppercase tracking-widest px-6 py-3 hover:bg-ink transition">
+                  {l.label} →
+                </a>
+              ))}
+              <a href={url("/contact")} class="text-sage-deep text-xs uppercase tracking-widest font-semibold px-2 py-3 border-b border-sage-deep hover:text-gold-deep hover:border-gold">
+                Don't see what you need? Contact us
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+
+      <p class="text-center text-ink/50 text-sm italic">
+        Pricing excludes applicable sales tax, a 20% service charge (not a gratuity), and delivery fees if applicable.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-sage-deep py-20 sm:py-28 text-center text-cream">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <p class="text-gold uppercase tracking-[0.3em] text-xs mb-4">Need a Venue?</p>
+      <h2 class="font-display text-3xl sm:text-4xl mb-6 leading-tight">
+        Looking for somewhere to host?
+      </h2>
+      <p class="text-cream/85 leading-relaxed mb-10 max-w-xl mx-auto">
+        Our downtown San Jose restaurant has private dining for 10 to 250 guests.
+        Need something bigger? Scott's Ballroom on the 7th floor handles up to 700.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <a href="https://squidly-inc.github.io/scotts-mockup/private-dining" class="border border-gold text-gold text-xs font-semibold uppercase tracking-widest px-8 py-3 hover:bg-gold hover:text-ink transition">
+          Restaurant Private Dining
+        </a>
+        <a href="https://squidly-inc.github.io/scotts-ballroom/" class="border border-gold text-gold text-xs font-semibold uppercase tracking-widest px-8 py-3 hover:bg-gold hover:text-ink transition">
+          Scott's Ballroom
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
