@@ -5,58 +5,103 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const url = (p: string) => `${base}${p}`;
 
 const tabs = [
-  { id: "boxed", label: "Boxed Meals" },
-  { id: "appetizers", label: "Appetizers" },
+  { id: "boxed", label: "Boxed Lunches" },
+  { id: "appetizers", label: "Appetizer Trays" },
   { id: "breakfast", label: "Breakfast" },
   { id: "brunch", label: "Brunch" },
-  { id: "lunch", label: "Lunch" },
+  { id: "lunch", label: "Lunch Catering" },
 ];
 
-const boxed = [
-  { name: "Citrus-Herb Chicken Box", desc: "Roasted chicken, quinoa pilaf, seasonal vegetables, dinner roll", price: "22" },
-  { name: "Mediterranean Salmon Box", desc: "Lemon-dill salmon, couscous, roasted asparagus, tzatziki", price: "26" },
-  { name: "Vegetarian Power Box", desc: "Quinoa-stuffed peppers, hummus, pita, cucumber salad", price: "20" },
-  { name: "Steak & Mushroom Box", desc: "Sliced flank steak, roasted potatoes, mushroom medley, chimichurri", price: "28" },
-  { name: "Italian Pasta Box", desc: "Penne pomodoro, Caesar side, garlic bread, biscotti", price: "21" },
-];
+// Source: scottsprovisions.com — boxed lunch menu (live)
+const boxed = {
+  "Sandwiches & Wraps": [
+    { name: "Smokehouse Ham & Swiss", desc: "Smoked ham, Swiss, sweet pepper relish, lettuce, tomato, stone-ground mustard on a croissant", price: "16" },
+    { name: "Classic Turkey Stack", desc: "Roasted turkey, bacon, aged jack, lettuce, tomato, sage-lemon aioli on sourdough", price: "16" },
+    { name: "House Chicken Salad", desc: "All-white-meat chicken salad, roasted peppers, caramelized onions, green leaf on whole wheat", price: "16" },
+    { name: "Herb-Crusted Beef Baguette", desc: "Roasted beef, whipped herb cheese, marinated tomato, pickled peppers, mixed greens on a baguette", price: "18" },
+    { name: "Golden Chicken Club", desc: "Citrus-marinated chicken, applewood bacon, aged jack, avocado, tomato, lemon aioli on sourdough", price: "18" },
+    { name: "Market Deli Ciabatta", desc: "Smoked turkey, roast beef, salami, capicola, pepper jack, Dijon aioli, olive relish on ciabatta", price: "18" },
+    { name: "Grilled Salmon Banh Mi", desc: "Grilled salmon, pickled vegetables, cucumber, cilantro, chili-lime aioli on a baguette", price: "20" },
+    { name: "Shrimp Louie Roll", desc: "Chilled shrimp, lettuce, tomato, avocado, classic Louie dressing on a brioche roll", price: "20" },
+    { name: "Blackened Fish Wrap", desc: "Blackened white fish, cabbage slaw, tomato, chipotle crema in a spinach wrap", price: "19" },
+  ],
+  "Power & Grain Bowls": [
+    { name: "Grilled Salmon Power Bowl (GF)", desc: "Quinoa, roasted vegetables, cucumber, avocado, lemon vinaigrette", price: "20" },
+    { name: "Sesame Ahi Tuna Bowl (GF)", desc: "Jasmine rice, edamame, cucumber, seaweed salad, sesame-soy glaze", price: "21" },
+    { name: "Mediterranean Shrimp Bowl (GF)", desc: "Brown rice, tomato, cucumber, olives, feta, lemon-herb dressing", price: "20" },
+    { name: "Citrus Chicken Wellness Bowl (GF)", desc: "Quinoa, spinach, roasted sweet potatoes, avocado, citrus vinaigrette", price: "18" },
+    { name: "Plant Power Grain Bowl (V, GF)", desc: "Quinoa, roasted vegetables, chickpeas, baby kale, tahini-lemon dressing", price: "17" },
+  ],
+  "Hot Meals": [
+    { name: "Teriyaki Chicken Rice Bowl", desc: "", price: "18" },
+    { name: "Teriyaki Shrimp Rice Bowl", desc: "", price: "22" },
+    { name: "Teriyaki Tofu Rice Bowl (V)", desc: "", price: "17" },
+    { name: "Teriyaki Beef Rice Bowl", desc: "", price: "22" },
+    { name: "Grilled Lemon-Herb Chicken Bowl", desc: "", price: "18" },
+    { name: "Penne Marinara with Chicken", desc: "", price: "18" },
+    { name: "Chicken Alfredo Pasta", desc: "", price: "19" },
+    { name: "Pesto Chicken Pasta", desc: "", price: "19" },
+    { name: "Grilled Salmon", desc: "Lemon-herb risotto, roasted vegetables", price: "21" },
+  ],
+  "Salads": [
+    { name: "Classic Chicken Caesar", desc: "", price: "16" },
+    { name: "Classic Caesar (V)", desc: "", price: "14" },
+    { name: "Grilled Salmon Caesar", desc: "", price: "19" },
+    { name: "California Cobb (GF)", desc: "", price: "18" },
+    { name: "Shrimp Louie (GF)", desc: "", price: "19" },
+    { name: "Ahi Tuna Greens (GF)", desc: "", price: "20" },
+    { name: "Mediterranean Shrimp Salad (GF)", desc: "", price: "19" },
+    { name: "Southwest Chicken Salad (GF)", desc: "", price: "17" },
+    { name: "Asian Chicken Salad", desc: "", price: "16" },
+    { name: "Greek Village Salad (V, GF)", desc: "", price: "15" },
+    { name: "Harvest Greens Salad (V, GF)", desc: "", price: "15" },
+    { name: "Avocado Garden Salad (V, GF)", desc: "", price: "15" },
+  ],
+};
 
 const appetizers = [
-  { name: "Bruschetta Trio", desc: "Tomato basil, mushroom, white bean — serves 12-15", price: "85" },
-  { name: "Charcuterie Board", desc: "Cured meats, cheeses, accompaniments — serves 15-20", price: "165" },
-  { name: "Crab Cakes (24 ct)", desc: "Mini crab cakes with remoulade", price: "120" },
-  { name: "Vegetable Crudité", desc: "Seasonal vegetables, herb dip — serves 20", price: "65" },
+  { name: "Bruschetta Trio", desc: "Tomato basil, mushroom, white bean — serves 12–15", price: "85" },
+  { name: "Charcuterie Board", desc: "Cured meats, cheeses, accompaniments — serves 15–20", price: "165" },
+  { name: "Mini Crab Cakes (24 ct)", desc: "With classic remoulade", price: "120" },
+  { name: "Vegetable Crudité", desc: "Seasonal vegetables with herb dip — serves 20", price: "65" },
   { name: "Shrimp Cocktail Platter", desc: "48 jumbo shrimp, classic cocktail sauce", price: "145" },
 ];
 
 const breakfast = [
-  { name: "Continental Breakfast", desc: "Pastries, fresh fruit, yogurt, juice & coffee — per person", price: "16" },
-  { name: "Hot Breakfast Buffet", desc: "Scrambled eggs, breakfast meats, potatoes, pastries — per person", price: "24" },
-  { name: "Breakfast Burrito Bar", desc: "Build-your-own with all the fixings — per person", price: "19" },
-  { name: "Avocado Toast Station", desc: "Sourdough, smashed avocado, toppings, eggs to order — per person", price: "22" },
+  { name: "Continental Breakfast", desc: "Pastries, fresh fruit, yogurt, juice & coffee", price: "16" },
+  { name: "Hot Breakfast Buffet", desc: "Scrambled eggs, breakfast meats, potatoes, pastries", price: "24" },
+  { name: "Breakfast Burrito Bar", desc: "Build-your-own with all the fixings", price: "19" },
+  { name: "Avocado Toast Station", desc: "Sourdough, smashed avocado, toppings, eggs to order", price: "22" },
 ];
 
 const brunch = [
-  { name: "Brunch Buffet", desc: "Eggs Benedict, French toast, breakfast meats, salads, pastries — per person", price: "38" },
-  { name: "Bloody Mary Bar", desc: "Premium mix, full garnish station — per person", price: "14" },
-  { name: "Mimosa Station", desc: "Sparkling wine, juices, fresh fruit — per person", price: "12" },
-  { name: "Smoked Salmon Bagel Bar", desc: "Bagels, cream cheese, capers, onions — per person", price: "26" },
+  { name: "Brunch Buffet", desc: "Eggs Benedict, French toast, breakfast meats, salads, pastries", price: "38" },
+  { name: "Bloody Mary Bar", desc: "Premium mix, full garnish station", price: "14" },
+  { name: "Mimosa Station", desc: "Sparkling wine, juices, fresh fruit", price: "12" },
+  { name: "Smoked Salmon Bagel Bar", desc: "Bagels, cream cheese, capers, onions", price: "26" },
 ];
 
 const lunch = [
-  { name: "Sandwich & Salad Buffet", desc: "Assorted sandwiches, two salads, chips, cookies — per person", price: "22" },
-  { name: "Build-Your-Own Salad Bar", desc: "Greens, proteins, toppings, three dressings — per person", price: "20" },
-  { name: "Hot Lunch Buffet", desc: "Choice of two entrées, two sides, salad, dessert — per person", price: "32" },
-  { name: "Taco Bar", desc: "Three protein options, all the fixings, rice & beans — per person", price: "26" },
-  { name: "Pasta Bar", desc: "Two pasta options, two sauces, salad, garlic bread — per person", price: "24" },
+  { name: "Sandwich & Salad Buffet", desc: "Assorted sandwiches, two salads, chips, cookies", price: "22" },
+  { name: "Build-Your-Own Salad Bar", desc: "Greens, proteins, toppings, three dressings", price: "20" },
+  { name: "Hot Lunch Buffet", desc: "Choice of two entrées, two sides, salad, dessert", price: "32" },
+  { name: "Taco Bar", desc: "Three protein options, all the fixings, rice & beans", price: "26" },
+  { name: "Pasta Bar", desc: "Two pasta options, two sauces, salad, garlic bread", price: "24" },
 ];
 
-const all = { boxed, appetizers, breakfast, brunch, lunch };
+const flat = { appetizers, breakfast, brunch, lunch };
 const titles: Record<string, string> = {
-  boxed: "Boxed Meals",
-  appetizers: "Catering — Appetizers",
-  breakfast: "Catering — Breakfast",
-  brunch: "Catering — Brunch",
-  lunch: "Catering — Lunch",
+  boxed: "Boxed Lunches",
+  appetizers: "Appetizer Trays",
+  breakfast: "Breakfast Catering",
+  brunch: "Brunch Catering",
+  lunch: "Lunch Catering",
+};
+const perPersonNote: Record<string, string> = {
+  appetizers: "Prices listed per platter unless noted.",
+  breakfast: "Prices listed per person. 10-guest minimum.",
+  brunch: "Prices listed per person. 10-guest minimum.",
+  lunch: "Prices listed per person. 10-guest minimum.",
 };
 ---
 
@@ -68,9 +113,12 @@ const titles: Record<string, string> = {
         Built for your event.
       </h1>
       <p class="text-cream/75 max-w-2xl mx-auto leading-relaxed">
-        Menus listed below cover <strong class="text-cream">boxed meals and drop-off catering</strong>.
+        Menus below cover <strong class="text-cream">boxed lunches and drop-off catering</strong>.
         For full-service on-site catering, menus are fully customizable.
         Don't see what you need? <a href={url("/contact")} class="text-gold underline hover:text-cream">Reach out.</a>
+      </p>
+      <p class="text-cream/55 text-xs mt-4 italic">
+        All boxed lunches include a fresh-baked cookie, whole seasonal fruit, house spreads & condiments, and compostable utensils & packaging.
       </p>
     </div>
   </section>
@@ -89,17 +137,44 @@ const titles: Record<string, string> = {
 
   <section class="bg-cream-soft py-16 sm:py-24">
     <div class="max-w-4xl mx-auto px-5 sm:px-8 space-y-16 sm:space-y-20">
-      {tabs.map((t) => (
-        <div id={t.id}>
-          <h2 class="font-display text-2xl sm:text-4xl text-ink mb-8 sm:mb-10 pb-3 border-b border-gold/40">
-            {titles[t.id]}
+
+      <div id="boxed">
+        <h2 class="font-display text-2xl sm:text-4xl text-ink mb-2 pb-3 border-b border-gold/40">
+          {titles.boxed}
+        </h2>
+        <p class="text-ink/55 text-sm italic mb-8 mt-3">
+          10-lunch minimum. 48-hour notice. Delivery within 15 miles for a fee, or pick up at our 4th Street location.
+        </p>
+        {Object.entries(boxed).map(([group, items]) => (
+          <div class="mb-10">
+            <h3 class="text-gold-deep uppercase tracking-[0.25em] text-xs font-semibold mb-5">{group}</h3>
+            <ul class="space-y-5">
+              {items.map((item) => (
+                <li class="flex justify-between items-start gap-4 sm:gap-6">
+                  <div class="flex-1">
+                    <p class="text-ink font-medium text-base sm:text-lg mb-1">{item.name}</p>
+                    {item.desc && <p class="text-ink/60 text-sm leading-relaxed">{item.desc}</p>}
+                  </div>
+                  <span class="text-ink/70 text-base sm:text-lg tabular-nums font-display whitespace-nowrap">${item.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      {(["appetizers", "breakfast", "brunch", "lunch"] as const).map((id) => (
+        <div id={id}>
+          <h2 class="font-display text-2xl sm:text-4xl text-ink mb-2 pb-3 border-b border-gold/40">
+            {titles[id]}
           </h2>
+          <p class="text-ink/55 text-sm italic mb-8 mt-3">{perPersonNote[id]}</p>
           <ul class="space-y-6">
-            {all[t.id as keyof typeof all].map((item) => (
+            {flat[id].map((item) => (
               <li class="flex justify-between items-start gap-4 sm:gap-6">
                 <div class="flex-1">
                   <p class="text-ink font-medium text-base sm:text-lg mb-1">{item.name}</p>
-                  <p class="text-ink/60 text-sm leading-relaxed">{item.desc}</p>
+                  {item.desc && <p class="text-ink/60 text-sm leading-relaxed">{item.desc}</p>}
                 </div>
                 <span class="text-ink/70 text-base sm:text-lg tabular-nums font-display whitespace-nowrap">${item.price}</span>
               </li>
@@ -121,7 +196,7 @@ const titles: Record<string, string> = {
       </div>
 
       <p class="text-center text-ink/50 text-sm italic pt-4">
-        Sample pricing — all menus customizable. Pricing excludes applicable sales tax, a 20% service charge (not a gratuity), and delivery fees.
+        Pricing excludes applicable sales tax, a 20% service charge (not a gratuity), and delivery fees where applicable.
       </p>
     </div>
   </section>
