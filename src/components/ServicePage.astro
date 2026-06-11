@@ -1,0 +1,88 @@
+---
+import type { Service } from "../data/services";
+import { services } from "../data/services";
+import Layout from "../layouts/Layout.astro";
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const url = (p: string) => (p.startsWith("http") ? p : `${base}${p}`);
+const otherServices = services.filter((s) => s.id !== service.id);
+---
+
+<Layout title={`${service.title} | Scott's Provisions`}>
+  <section class="relative bg-ink pt-32 pb-12 sm:pb-16">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div>
+        <p class="text-gold uppercase tracking-[0.3em] text-xs mb-4">{service.tagline}</p>
+        <h1 class="font-display text-4xl sm:text-6xl text-cream mb-6 leading-tight">
+          {service.title}
+        </h1>
+        <p class="text-cream/80 leading-relaxed text-lg">
+          {service.shortBody}
+        </p>
+      </div>
+      <div class="aspect-[4/3] overflow-hidden bg-ink/30 shadow-2xl">
+        <img src={`${base}/photos/${service.hero}`} alt={service.title} class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream-soft py-16 sm:py-24">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 space-y-12">
+      <p class="text-ink/85 text-lg leading-relaxed">
+        {service.longBody}
+      </p>
+
+      <dl class="grid sm:grid-cols-2 gap-x-10 gap-y-6 bg-paper border border-line p-8 sm:p-10">
+        {service.details.map(([k, v]) => (
+          <div>
+            <dt class="text-xs uppercase tracking-widest text-sage-deep font-semibold mb-2">{k}</dt>
+            <dd class="text-ink/85 leading-relaxed">{v}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <div class="flex flex-wrap gap-3">
+        {service.ctas.map((c) => (
+          <a
+            href={url(c.href)}
+            target={c.href.startsWith("http") ? "_blank" : undefined}
+            rel={c.href.startsWith("http") ? "noopener" : undefined}
+            class:list={[
+              "text-xs font-semibold uppercase tracking-widest px-7 py-3 transition",
+              c.primary
+                ? "bg-sage-deep text-cream hover:bg-ink"
+                : "border border-sage-deep text-sage-deep hover:bg-sage-deep hover:text-cream",
+            ]}
+          >
+            {c.label} →
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper py-16 sm:py-20 border-t border-line">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8">
+      <p class="text-center text-sage-deep uppercase tracking-[0.3em] text-xs mb-3">More Services</p>
+      <h2 class="font-display text-center text-2xl sm:text-3xl text-ink mb-10">
+        Three other ways to bring Scott's to your event.
+      </h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {otherServices.map((s) => (
+          <a href={url(`/services/${s.slug}`)} class="block bg-cream-soft p-6 hover:bg-sage-pale transition border-t-2 border-gold">
+            <h3 class="font-display text-xl text-ink mb-2">{s.title}</h3>
+            <p class="text-ink/65 text-sm leading-relaxed mb-4">{s.shortBody}</p>
+            <span class="text-sage-deep text-xs uppercase tracking-widest font-semibold border-b border-sage-deep pb-1">
+              Learn More →
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

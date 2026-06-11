@@ -123,6 +123,23 @@ const perPersonNote: Record<string, string> = {
     </div>
   </section>
 
+  <section class="bg-ink-soft py-8 sm:py-10">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {[
+          { src: url("/photos/food-cioppino.jpg"), alt: "Scott's Cioppino" },
+          { src: url("/photos/food-crab-cakes.jpg"), alt: "Dungeness Crab Cakes" },
+          { src: url("/photos/food-prawns.jpg"), alt: "Jumbo Wrapped Prawns" },
+          { src: url("/photos/food-pesto-rigatoni.jpg"), alt: "Pesto Rigatoni with Salmon" },
+        ].map((p) => (
+          <div class="aspect-square overflow-hidden bg-ink/20">
+            <img src={p.src} alt={p.alt} class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="bg-ink-soft sticky top-[88px] sm:top-[96px] z-40 border-t border-cream/10">
     <div class="max-w-5xl mx-auto px-5 sm:px-8 overflow-x-auto">
       <div class="flex gap-1 py-2">
