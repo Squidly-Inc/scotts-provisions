@@ -1,33 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { services as allServices } from "../data/services";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const url = (p: string) => `${base}${p}`;
 
-const heroImage = "https://static.wixstatic.com/media/56773e_e8eb6ec8755447599adca9d512c222c4~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_90/JK8A0325-1-6-scaled_edited.jpg";
+const heroImage = `${base}/photos/hero-catering.jpg`;
 
-const services = [
-  {
-    title: "Boxed Meals",
-    body: "Individually packaged meals for meetings, trainings, and workplace dining.",
-    href: url("/services/boxed-meals"),
-  },
-  {
-    title: "Drop-Off Catering",
-    body: "Delivered and professionally set up — easy service without on-site staffing.",
-    href: url("/services/drop-off"),
-  },
-  {
-    title: "Full-Service On-Site",
-    body: "Passed appetizers, plated meals, family style — staffed to fit the event.",
-    href: url("/services/full-service"),
-  },
-  {
-    title: "Full Bar Service",
-    body: "Licensed bar — non-alcoholic, beer & wine, or full bar packages.",
-    href: url("/services/bar"),
-  },
-];
+const services = allServices.map((s) => ({
+  title: s.title,
+  body: s.shortBody,
+  href: url(`/services/${s.slug}`),
+}));
 ---
 
 <Layout

@@ -91,7 +91,7 @@ import Layout from "../layouts/Layout.astro";
         New seasonal menus, office-friendly meal ideas, and the occasional
         promo for repeat clients — straight to your inbox.
       </p>
-      <form action="https://scottshospitality.com/newsletter" method="post" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <form data-newsletter-pending onsubmit="event.preventDefault(); this.reset(); var btn=this.querySelector('button'); if(btn) btn.textContent='Subscribed ✓'; this.classList.add('opacity-60','pointer-events-none');" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <label class="sr-only" for="newsletter-email">Email address</label>
         <input id="newsletter-email" name="email" type="email" required placeholder="you@example.com" class="flex-1 bg-cream-soft text-ink px-4 py-3 placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-gold-light" />
         <button type="submit" class="bg-gold-light text-ink text-xs font-semibold uppercase tracking-widest px-6 py-3 hover:bg-cream transition">Subscribe</button>

@@ -19,7 +19,7 @@ const url = (p: string) => `${base}${p}`;
           <a href="https://squidly-inc.github.io/scotts-hospitality/" class="hover:text-gold">Hospitality</a>
           <a href="https://squidly-inc.github.io/scotts-mockup/" class="hover:text-gold">Restaurant</a>
           <a href="https://squidly-inc.github.io/scotts-ballroom/" class="hover:text-gold">Ballroom</a>
-          <a href="https://squidly-inc.github.io/scotts-social-club/" class="hover:text-gold">Social Club</a>
+          <a href="https://www.scottssocialclub.com/" class="hover:text-gold">Social Club</a>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@ const url = (p: string) => `${base}${p}`;
         <p class="text-gold uppercase tracking-widest text-xs mb-2">Newsletter</p>
         <p class="text-cream/80 text-sm leading-snug">One list across the Scott's San Jose family — seasonal menus, catering specials, and updates.</p>
       </div>
-      <form action="https://scottshospitality.com/newsletter" method="post" class="flex gap-2">
+      <form data-newsletter-pending onsubmit="event.preventDefault(); this.reset(); var btn=this.querySelector('button'); if(btn) btn.textContent='Subscribed ✓'; this.classList.add('opacity-60','pointer-events-none');" class="flex gap-2">
         <label class="sr-only" for="footer-newsletter">Email address</label>
         <input id="footer-newsletter" name="email" type="email" required placeholder="you@example.com" class="flex-1 bg-cream-soft text-ink px-4 py-2.5 text-sm placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-gold" />
         <button type="submit" class="bg-gold text-ink text-xs font-semibold uppercase tracking-widest px-5 hover:bg-cream transition">Subscribe</button>
@@ -63,7 +63,6 @@ const url = (p: string) => `${base}${p}`;
       <p>© 2026 Scott's Provisions. All rights reserved.</p>
       <div class="flex gap-6">
         <a href="https://www.instagram.com/scottsprovisions/" class="hover:text-gold">Instagram</a>
-        <a href="https://www.facebook.com/" class="hover:text-gold">Facebook</a>
       </div>
     </div>
   </div>

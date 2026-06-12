@@ -86,7 +86,7 @@ export const services: Service[] = [
     slug: "bar",
     title: "Full-Service On-Site Bar",
     tagline: "Add-on to on-site catering, or stand-alone.",
-    hero: "food-pesto-rigatoni.jpg",
+    hero: "hero-catering.jpg",
     shortBody: "Fully licensed bar — non-alcoholic, beer & wine, or full bar packages.",
     longBody:
       "Scott's Provisions offers fully licensed bar services as an add-on to on-site catering or as a stand-alone service. Explore our non-alcoholic, mocktail, beer-and-wine, and full bar packages — professionally staffed, fully insured, and tailored to the event.",
