@@ -91,10 +91,19 @@ import Layout from "../layouts/Layout.astro";
         New seasonal menus, office-friendly meal ideas, and the occasional
         promo for repeat clients — straight to your inbox.
       </p>
-      <form data-newsletter-pending onsubmit="event.preventDefault(); this.reset(); var btn=this.querySelector('button'); if(btn) btn.textContent='Subscribed ✓'; this.classList.add('opacity-60','pointer-events-none');" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <form
+        action="https://scottsseafoodsj.us8.list-manage.com/subscribe/post?u=fab8fe5ff01093f4e48a5bd14&amp;id=e688913a46&amp;f_id=00e736e3f0"
+        method="post"
+        target="_blank"
+        novalidate
+        class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+      >
         <label class="sr-only" for="newsletter-email">Email address</label>
-        <input id="newsletter-email" name="email" type="email" required placeholder="you@example.com" class="flex-1 bg-cream-soft text-ink px-4 py-3 placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-gold-light" />
-        <button type="submit" class="bg-gold-light text-ink text-xs font-semibold uppercase tracking-widest px-6 py-3 hover:bg-cream transition">Subscribe</button>
+        <input id="newsletter-email" name="EMAIL" type="email" required placeholder="you@example.com" class="flex-1 bg-cream-soft text-ink px-4 py-3 placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-gold-light" />
+        <div aria-hidden="true" style="position: absolute; left: -5000px;">
+          <input type="text" name="b_fab8fe5ff01093f4e48a5bd14_e688913a46" tabindex="-1" value="" />
+        </div>
+        <button type="submit" name="subscribe" class="bg-gold-light text-ink text-xs font-semibold uppercase tracking-widest px-6 py-3 hover:bg-cream transition">Subscribe</button>
       </form>
       <p class="text-cream/40 text-xs mt-4">We respect your inbox. No spam, unsubscribe anytime.</p>
     </div>
