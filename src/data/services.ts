@@ -57,7 +57,7 @@ export const services: Service[] = [
     ],
     ctas: [
       { label: "Order on Toast", href: TOAST_URL, primary: true },
-      { label: "View Menu", href: "/menus#appetizers" },
+      { label: "View Menu", href: "/menus" },
       { label: "Contact Us", href: "/contact" },
     ],
   },
