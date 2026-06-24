@@ -76,7 +76,7 @@ const otherServices = services.filter((s) => s.id !== service.id);
         {otherServices.map((s) => (
           <a href={url(`/services/${s.slug}`)} class="block bg-cream-soft p-6 hover:bg-sage-pale transition border-t-2 border-gold">
             <h3 class="font-display text-xl text-ink mb-2">{s.title}</h3>
-            <p class="text-ink/65 text-sm leading-relaxed mb-4">{s.shortBody}</p>
+            <p class="text-ink/70 text-sm leading-relaxed mb-4">{s.shortBody}</p>
             <span class="text-sage-deep text-xs uppercase tracking-widest font-semibold border-b border-sage-deep pb-1">
               Learn More →
             </span>
