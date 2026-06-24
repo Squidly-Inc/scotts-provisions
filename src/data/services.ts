@@ -1,4 +1,4 @@
-export const TOAST_URL = "https://order.toasttab.com/catering/scotts-provisions-88-s-4th-street-7th-floor";
+export const TOAST_URL = "https://www.toasttab.com/catering/scotts-provisions-88-s-4th-street-7th-floor";
 
 export type ServiceDetail = readonly [string, string];
 
