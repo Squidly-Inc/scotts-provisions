@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { services } from "../data/services";
+import { SITES } from "../lib/sites";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const url = (p: string) => `${base}${p}`;
@@ -57,10 +58,10 @@ const url = (p: string) => `${base}${p}`;
         Need something bigger? Scott's Ballroom on the 7th floor handles up to 700.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-        <a href="https://squidly-inc.github.io/scotts-mockup/private-dining/" class="border border-gold text-gold-light text-xs font-semibold uppercase tracking-widest px-8 py-3 hover:bg-gold hover:text-ink transition">
+        <a href={`${SITES.restaurant}/private-dining/`} class="border border-gold text-gold-light text-xs font-semibold uppercase tracking-widest px-8 py-3 hover:bg-gold hover:text-ink transition">
           Restaurant Private Dining
         </a>
-        <a href="https://squidly-inc.github.io/scotts-ballroom/" class="border border-gold text-gold-light text-xs font-semibold uppercase tracking-widest px-8 py-3 hover:bg-gold hover:text-ink transition">
+        <a href={`${SITES.ballroom}/`} class="border border-gold text-gold-light text-xs font-semibold uppercase tracking-widest px-8 py-3 hover:bg-gold hover:text-ink transition">
           Scott's Ballroom
         </a>
       </div>

@@ -1,4 +1,6 @@
 ---
+import { SITES } from "../lib/sites";
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const url = (p: string) => `${base}${p}`;
 ---
@@ -16,10 +18,10 @@ const url = (p: string) => `${base}${p}`;
       <div class="mt-6 text-sm">
         <p class="text-gold uppercase tracking-widest text-xs mb-2">Part of the Scott's San Jose family</p>
         <div class="flex flex-wrap gap-4 text-cream/70">
-          <a href="https://squidly-inc.github.io/scotts-hospitality/" class="hover:text-gold">Hospitality</a>
-          <a href="https://squidly-inc.github.io/scotts-mockup/" class="hover:text-gold">Restaurant</a>
-          <a href="https://squidly-inc.github.io/scotts-ballroom/" class="hover:text-gold">Ballroom</a>
-          <a href="https://www.scottssocialclub.com/" class="hover:text-gold">Social Club</a>
+          <a href={`${SITES.hospitality}/`} class="hover:text-gold">Hospitality</a>
+          <a href={`${SITES.restaurant}/`} class="hover:text-gold">Restaurant</a>
+          <a href={`${SITES.ballroom}/`} class="hover:text-gold">Ballroom</a>
+          <a href={`${SITES.socialClub}/`} class="hover:text-gold">Social Club</a>
         </div>
       </div>
     </div>
