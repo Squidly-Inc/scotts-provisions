@@ -29,7 +29,7 @@ export const services: Service[] = [
       ["Ordering", "Order through Toast or reach out to us directly"],
       ["Delivery", "Pick up in downtown San Jose, or we deliver for a fee within 15 miles"],
       ["Minimum", "$500 or 10 meals"],
-      ["Notice", "48 hours"],
+      ["Notice", "48 hours preferred — we'll try to accommodate within 24"],
       ["Availability", "Mon–Fri (or reach out for weekend)"],
     ],
     ctas: [
@@ -52,7 +52,7 @@ export const services: Service[] = [
       ["Ordering", "Order through Toast or reach out to us directly"],
       ["Delivery", "Pick up in downtown San Jose, or we deliver for a fee within 15 miles"],
       ["Minimum", "$1,000"],
-      ["Notice", "48 hours"],
+      ["Notice", "48 hours preferred — we'll try to accommodate within 24"],
       ["Availability", "Mon–Fri (or reach out for weekend)"],
     ],
     ctas: [
