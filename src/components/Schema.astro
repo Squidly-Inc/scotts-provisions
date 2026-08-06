@@ -13,6 +13,7 @@ const graph = {
     },
     {
       "@type": "FoodEstablishment",
+      "@id": "https://scottsprovisions.com/#caterer",
       name: "Scott's Provisions",
       description:
         "Chef-driven catering company serving workplaces, institutions, and events across San Jose, Silicon Valley, and the North, South, and East Bay. Services include boxed meals, drop-off catering, full-service on-site catering, and full-service bar packages.",
@@ -20,7 +21,7 @@ const graph = {
       image: abs("/photos/hero-catering.jpg"),
       logo: abs("/scotts-provisions.webp"),
       email: "provisions@scottshospitality.com",
-      telephone: "(408) 971-1716",
+      telephone: "+14089711716",
       address: {
         "@type": "PostalAddress",
         streetAddress: "88 S. 4th Street, 7th Floor",
@@ -30,8 +31,10 @@ const graph = {
         addressCountry: "US",
       },
       parentOrganization: {
-        "@type": "Organization",
+        "@type": "Restaurant",
+        "@id": "https://scottsseafoodsj.com/#restaurant",
         name: "Scott's Seafood San Jose",
+        url: "https://scottsseafoodsj.com",
       },
       sameAs: ["https://www.instagram.com/scottsprovisions/"],
     },
